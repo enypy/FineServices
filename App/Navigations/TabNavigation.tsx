@@ -1,10 +1,10 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import HomeScreen from '../Screens/HomeScreen/HomeScreen'
 import BookingScreen from '../Screens/BookingScreen/BookingScreen'
 import ProfileScreen from '../Screens/ProfileScreen/ProfileScreen'
 import { StyleSheet, Text } from 'react-native'
 import Colors from '../Utils/Colors'
 import { FontAwesome } from '@expo/vector-icons'
+import HomeNavigation from './HomeNavigation'
 
 
 const Tab = createBottomTabNavigator()
@@ -15,7 +15,7 @@ export default function TabNavigation() {
             headerShown: false,
             tabBarActiveTintColor: Colors.PRIMARY
         }}>
-            <Tab.Screen name="home" component={HomeScreen} options={{
+            <Tab.Screen name="home" component={HomeNavigation} options={{
                 tabBarLabel: ({ color }) => (
                     <Text style={{ ...styles.navBarText, color: color }}>Home</Text>
                 ),
@@ -50,4 +50,3 @@ const styles = StyleSheet.create({
         color: Colors.BLACK
     }
 })
-console.log(styles)

@@ -1,11 +1,12 @@
-import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, Text, View } from 'react-native'
+import 'react-native-gesture-handler'
+import { StyleSheet, View } from 'react-native'
 import Login from './App/Screens/LoginScreen/Login'
 import { ClerkProvider, SignedIn, SignedOut } from '@clerk/clerk-expo'
 import Colors from './App/Utils/Colors'
 import * as SecureStore from 'expo-secure-store'
 import { NavigationContainer } from '@react-navigation/native'
 import TabNavigation from './App/Navigations/TabNavigation'
+import { useFonts } from 'expo-font'
 
 
 const tokenCache = {
@@ -26,10 +27,19 @@ const tokenCache = {
 }
 
 export default function App() {
+    const [fontsLoaded, fontError] = useFonts({
+      'outfit': require('./assets/fonts/Outfit-Regular.ttf'),
+      'outfit-medium': require('./assets/fonts/Outfit-Medium.ttf'),
+      'outfit-bold': require('./assets/fonts/Outfit-Bold.ttf'),
+    })
+
+    if (!fontsLoaded && !fontError) {
+      return null
+    }
+
   return (
     <ClerkProvider publishableKey={process.env.CLERK_PUBLISHABLE_KEY} tokenCache={tokenCache}>
       <View style={styles.container}>
-
         <SignedIn>
           <NavigationContainer>
             <TabNavigation />
