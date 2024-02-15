@@ -1,10 +1,15 @@
-import { View, Text, Image, StyleSheet } from 'react-native'
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
 import Colors from '../../Utils/Colors'
+import { useNavigation } from '@react-navigation/native'
+import { StackNavigationProp } from '@react-navigation/stack'
 
 export default function BusinessListItemSmall({ business }: { business: BusinessList['businessLists'][number] }): React.JSX.Element {
+  const navigation = useNavigation<StackNavigationProp<any>>()
     return (
-        <View style={styles.container}>
+        <TouchableOpacity style={styles.container} 
+        onPress={() => navigation.push('businessDetail', { business: business })}
+        >
             <Image source={{ uri: business?.images[0]?.url }}
                 style={styles.image}
             />
@@ -14,7 +19,7 @@ export default function BusinessListItemSmall({ business }: { business: Business
                 <Text style={styles.categoryName}>{business?.category?.name}</Text>
 
             </View>
-        </View>
+        </TouchableOpacity>
     )
 }
 

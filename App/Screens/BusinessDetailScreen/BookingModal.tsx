@@ -1,4 +1,4 @@
-import { View, Text, Modal, TouchableOpacity, StyleSheet, FlatList, TextInput, NativeSyntheticEvent, TextInputChangeEventData, KeyboardAvoidingView, ScrollView } from 'react-native'
+import { View, Text, Modal, TouchableOpacity, StyleSheet, FlatList, TextInput, NativeSyntheticEvent, TextInputChangeEventData, KeyboardAvoidingView, ScrollView, ToastAndroid } from 'react-native'
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { Ionicons } from '@expo/vector-icons'
 import CalendarPicker from 'react-native-calendar-picker'
@@ -6,13 +6,20 @@ import Colors from '../../Utils/Colors'
 import Heading from '../../Components/Heading'
 import { createBooking } from '../../Utils/GlobalApi'
 import { useUser } from '@clerk/clerk-expo'
+import { format } from 'date-fns'
 
-export default function BookingModal({ isModalVisible, setIsModalVisible, businessId }: { isModalVisible: boolean, setIsModalVisible: Dispatch<SetStateAction<boolean>>, businessId: string | undefined }): React.JSX.Element {
+type BookingModalParams = {
+  isModalVisible: boolean,
+  setIsModalVisible: Dispatch<SetStateAction<boolean>>,
+  businessId: string | undefined
+}
+
+export default function BookingModal({ isModalVisible, setIsModalVisible, businessId }: BookingModalParams): React.JSX.Element {
 
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined)
   const [scheduleList, setScheduleList] = useState<string[] | undefined>(undefined)
   const [selectedSchedule, setSelectedSchedule] = useState<undefined | string>(undefined)
-  const [note, setNote] = useState<undefined | NativeSyntheticEvent<TextInputChangeEventData>>(undefined)
+  const [note, setNote] = useState<string>('')
   const { user } = useUser()
 
   useEffect(() => {
@@ -35,25 +42,40 @@ export default function BookingModal({ isModalVisible, setIsModalVisible, busine
     return scheduleList
   }
 
+
   const createNewBooking = () => {
-    const data = {}
+
+    if (!selectedDate && !selectedSchedule) {
+      ToastAndroid.show('Please provide a date and select a schedule.', ToastAndroid.LONG)
+      return
+
+    }
+
     if (businessId && selectedDate && selectedSchedule && user) {
-      console.log(note)
-      data.businessId = businessId
-      data.date = selectedDate
-      data.time = selectedSchedule
-      data.userEmail = user.emailAddresses
-      data.username = user.username
-      if (note) data.note = 'dfsdfdsf'
+      const data = {
+        businessId: businessId,
+        date: format(selectedDate, 'dd-MMM-yyyy') ,
+        time: selectedSchedule,
+        userEmail: user.primaryEmailAddress?.emailAddress,
+        userName: user.fullName,
+        note: note
+      }
       createBooking(data)
         .then(res => {
-          console.log('res',res)
+          ToastAndroid.show('Booking Created Successfully!', ToastAndroid.LONG)
+          setIsModalVisible(false)
         })
-        .catch(err =>
-          console.log('err',err)
+        .catch(err => {
+          ToastAndroid.show('Something went wrong, please try again later...', ToastAndroid.LONG)
+          console.log('err', err)
+        }
         )
+    } else {
+      ToastAndroid.show('Something went wrong, please try again later...', ToastAndroid.LONG)
     }
+
   }
+
   return (
     <Modal animationType='slide' visible={isModalVisible}>
       <ScrollView>
@@ -110,7 +132,14 @@ export default function BookingModal({ isModalVisible, setIsModalVisible, busine
 
           <View style={{ margin: 20 }}>
             <Heading heading='Note (optional)' />
-            <TextInput numberOfLines={4} multiline={true} placeholder='Type a message...' style={styles.noteTextArea} onChange={(text) => setNote(text)} />
+            <TextInput
+              numberOfLines={4}
+              multiline={true}
+              placeholder='Type a message...'
+              style={styles.noteTextArea}
+              onChangeText={text => setNote(text)}
+              value={note}
+            />
           </View>
           <TouchableOpacity onPress={() => { createNewBooking() }}>
             <Text style={styles.confirmBtn}>Confirm & Book</Text>

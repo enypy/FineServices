@@ -5,6 +5,7 @@ import { StyleSheet, Text } from 'react-native'
 import Colors from '../Utils/Colors'
 import { FontAwesome } from '@expo/vector-icons'
 import HomeNavigation from './HomeNavigation'
+import BookingNavigation from './BookingNavgigation'
 
 
 const Tab = createBottomTabNavigator()
@@ -23,7 +24,7 @@ export default function TabNavigation() {
                     <FontAwesome name="home" size={size} color={color} />
                 )
             }} />
-            <Tab.Screen name="booking" component={BookingScreen} options={{
+            <Tab.Screen name="booking" component={BookingNavigation} options={{
                 tabBarLabel: ({ color }) => (
                     <Text style={{ ...styles.navBarText, color: color }}>Booking</Text>
                 ),

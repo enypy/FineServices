@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView, Modal } from 'react-native'
+import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView, Modal, Linking } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { Ionicons } from '@expo/vector-icons'
@@ -16,6 +16,10 @@ export default function BusinessDetailScreen(): React.JSX.Element {
     useEffect(() => {
         setBusiness(param.business)
     }, [param])
+
+    const onMessageBtnClick = () => {
+        Linking.openURL(`mailto:${business?.email}?subject=I am looking for your Service&body=Hello there,`)
+    }
 
     return (
         <View>
@@ -50,7 +54,10 @@ export default function BusinessDetailScreen(): React.JSX.Element {
                 </View>
             </ScrollView>
             <View style={{ display: 'flex', flexDirection: 'row', margin: 8, gap: 8 }}>
-                <TouchableOpacity style={styles.messageBtn}>
+                <TouchableOpacity 
+                style={styles.messageBtn}
+                onPress={() => {onMessageBtnClick()}}
+                >
                     <Text style={{ textAlign: 'center', fontFamily: 'outfit-medium', color: Colors.PRIMARY, fontSize: 18 }}>Message</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
