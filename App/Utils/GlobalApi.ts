@@ -57,7 +57,7 @@ const getBusinessLists = async (): Promise<BusinessList> => {
   return request(MASTER_URL, query)
 }
 
-const getBusinessListsByCategory = async (category : Category): Promise<BusinessList> => {
+const getBusinessListsByCategory = async (category: Category): Promise<BusinessList> => {
   if (!MASTER_URL) throw new Error('MASTER_URL NOT FOUND')
   const query = gql`
     query GetBusinessListByCategory {
@@ -80,4 +80,25 @@ const getBusinessListsByCategory = async (category : Category): Promise<Business
   return request(MASTER_URL, query)
 }
 
-export { getSliders, getCategories, getBusinessLists, getBusinessListsByCategory }
+const createBooking = async (data: { [key: string]: string }) => {
+  if (!MASTER_URL) throw new Error('MASTER_URL NOT FOUND')
+  const mutationQuery = gql`
+  mutation CreateBooking {
+    createBooking(
+      data: {bookingStatus: Booked, businessList: {connect: {id: ${data.businessId}}, date: ${data.date}, time: ${data.time}, userEmail: ${data.userEmail}, userName: ${data.username}, note: ${data.note}}
+    ) {
+      id
+    }
+    publishManyBookings
+  }
+  `
+  return request(MASTER_URL, mutationQuery)
+}
+
+export {
+  getSliders,
+  getCategories,
+  getBusinessLists,
+  getBusinessListsByCategory,
+  createBooking
+}
