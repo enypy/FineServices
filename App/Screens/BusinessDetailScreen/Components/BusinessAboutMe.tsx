@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
-import Heading from '../../Components/Heading'
-import Colors from '../../Utils/Colors'
+import Heading from '../../../Components/Heading'
+import Colors from '../../../Utils/Colors'
 
 export default function BusinessAboutMe({ business }: { business: BusinessList["businessLists"][number] | undefined }): React.JSX.Element {
     const [nbOfLines, setNbOfLines] = useState<number>(5)

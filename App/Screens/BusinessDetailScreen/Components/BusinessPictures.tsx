@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, FlatList, Image, SafeAreaView } from 'react-native'
 import React from 'react'
-import Colors from '../../Utils/Colors'
-import Heading from '../../Components/Heading'
+import Colors from '../../../Utils/Colors'
+import Heading from '../../../Components/Heading'
 
 export default function BusinessPictures({ business }: { business: BusinessList["businessLists"][number] | undefined }): React.JSX.Element {
 

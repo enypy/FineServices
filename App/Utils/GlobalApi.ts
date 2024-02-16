@@ -101,10 +101,12 @@ const getUserBookings = async (userEmail: string | undefined) => {
         contactPerson
         adress
         about
+        category{
+          name
+        }
       }
     }
   }
-  
 `
   return request(MASTER_URL, query)
 }

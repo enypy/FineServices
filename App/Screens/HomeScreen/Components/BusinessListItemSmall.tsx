@@ -1,6 +1,6 @@
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
-import Colors from '../../Utils/Colors'
+import Colors from '../../../Utils/Colors'
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
 

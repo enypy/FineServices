@@ -1,10 +1,10 @@
 import { View, Text, TouchableOpacity, FlatList } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useNavigation, useRoute } from '@react-navigation/native'
-import { getBusinessListsByCategory } from '../../Utils/GlobalApi'
-import BusinessListItem from './BusinessListItem'
-import Colors from '../../Utils/Colors'
-import PageHeading from '../../Components/PageHeading'
+import { getBusinessListsByCategory } from '../../../Utils/GlobalApi'
+import BusinessListItem from '../BusinessListItem'
+import Colors from '../../../Utils/Colors'
+import PageHeading from '../../../Components/PageHeading'
 
 export default function BusinessListByCategoryScreen() {
 

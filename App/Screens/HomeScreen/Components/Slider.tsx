@@ -1,7 +1,7 @@
 import { View, StyleSheet, FlatList, Image } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { getSliders } from '../../Utils/GlobalApi'
-import Heading from '../../Components/Heading'
+import { getSliders } from '../../../Utils/GlobalApi'
+import Heading from '../../../Components/Heading'
 
 export default function Slider() {
 

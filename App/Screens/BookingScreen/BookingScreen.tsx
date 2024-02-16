@@ -37,11 +37,13 @@ export default function BookingScreen() {
 
     return (
         <View style={{ padding: 20 }}>
-            <Heading heading='MyBookings' color={Colors.BLACK} />
+            <Heading heading='My Bookings' color={Colors.BLACK} />
             <View>
                 <FlatList data={userBookings}
                 onRefresh={() => { fetchUserBookings() }}
                 refreshing={loading}
+                scrollEnabled={true}
+                showsVerticalScrollIndicator={false}
                     renderItem={({ item }) => (
                         <BookingItem booking={item} />
                     )} />

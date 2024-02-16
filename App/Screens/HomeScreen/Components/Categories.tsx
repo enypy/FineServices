@@ -1,8 +1,8 @@
 import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { getCategories } from '../../Utils/GlobalApi'
-import Heading from '../../Components/Heading'
-import Colors from '../../Utils/Colors'
+import { getCategories } from '../../../Utils/GlobalApi'
+import Heading from '../../../Components/Heading'
+import Colors from '../../../Utils/Colors'
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
 

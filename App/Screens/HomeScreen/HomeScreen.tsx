@@ -1,9 +1,9 @@
 import { View } from 'react-native'
 import React from 'react'
-import Header from './Header'
-import Slider from './Slider'
-import Categories from './Categories'
-import BusinessList from './BusinessList'
+import Header from './Components/Header'
+import Slider from './Components/Slider'
+import Categories from './Components/Categories'
+import BusinessList from './Components/BusinessList'
 
 export default function HomeScreen() {
     return (

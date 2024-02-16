@@ -1,7 +1,7 @@
 import { View, Text, Image, StyleSheet, TextInput } from 'react-native'
 import React from 'react'
 import { useUser } from '@clerk/clerk-expo'
-import Colors from '../../Utils/Colors'
+import Colors from '../../../Utils/Colors'
 import { FontAwesome } from '@expo/vector-icons'
 
 export default function Header() {

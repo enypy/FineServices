@@ -27,18 +27,21 @@ const tokenCache = {
 }
 
 export default function App() {
-    const [fontsLoaded, fontError] = useFonts({
-      'outfit': require('./assets/fonts/Outfit-Regular.ttf'),
-      'outfit-medium': require('./assets/fonts/Outfit-Medium.ttf'),
-      'outfit-bold': require('./assets/fonts/Outfit-Bold.ttf'),
-    })
+  const [fontsLoaded, fontError] = useFonts({
+    'outfit': require('./assets/fonts/Outfit-Regular.ttf'),
+    'outfit-medium': require('./assets/fonts/Outfit-Medium.ttf'),
+    'outfit-bold': require('./assets/fonts/Outfit-Bold.ttf'),
+  })
 
-    if (!fontsLoaded && !fontError) {
-      return null
-    }
+  if (!fontsLoaded && !fontError) {
+    return null
+  }
 
   return (
-    <ClerkProvider publishableKey={process.env.CLERK_PUBLISHABLE_KEY} tokenCache={tokenCache}>
+    <ClerkProvider
+      publishableKey={process.env.CLERK_PUBLISHABLE_KEY}
+      tokenCache={tokenCache}
+    >
       <View style={styles.container}>
         <SignedIn>
           <NavigationContainer>
@@ -57,5 +60,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.WHITE
-  },
+  }
 })

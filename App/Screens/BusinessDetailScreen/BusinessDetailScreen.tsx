@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { Ionicons } from '@expo/vector-icons'
 import Colors from '../../Utils/Colors'
-import BusinessPictures from './BusinessPictures'
-import BusinessAboutMe from './BusinessAboutMe'
-import BookingModal from './BookingModal'
+import BusinessPictures from './Components/BusinessPictures'
+import BusinessAboutMe from './Components/BusinessAboutMe'
+import BookingModal from './Components/BookingModal'
 
 export default function BusinessDetailScreen(): React.JSX.Element {
     const param: any = useRoute().params

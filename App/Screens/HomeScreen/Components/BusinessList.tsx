@@ -1,7 +1,7 @@
 import { View, FlatList } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { getBusinessLists } from '../../Utils/GlobalApi'
-import Heading from '../../Components/Heading'
+import { getBusinessLists } from '../../../Utils/GlobalApi'
+import Heading from '../../../Components/Heading'
 import BusinessListItemSmall from './BusinessListItemSmall'
 
 

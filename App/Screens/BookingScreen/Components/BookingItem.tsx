@@ -6,7 +6,7 @@ import { StackNavigationProp } from '@react-navigation/stack'
 import Colors from '../../../Utils/Colors'
 
 
-export default function BookingItem({ booking }): React.JSX.Element {
+export default function BookingItem({ booking }: any): React.JSX.Element {
     const navigation = useNavigation<StackNavigationProp<any>>()
     return (
         <TouchableOpacity style={styles.container}
@@ -14,16 +14,21 @@ export default function BookingItem({ booking }): React.JSX.Element {
         >
             <Image source={{ uri: booking.businessList.images[0].url }} style={styles.image} />
             <View style={styles.subContainer}>
-                <Text style={{ fontFamily: 'outfit', color: Colors.GRAY, fontSize: 15 }}>{booking.businessList.contactPerson}</Text>
+                <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <Text style={{ fontFamily: 'outfit', color: Colors.GRAY, fontSize: 15 }}>{booking.businessList.contactPerson}</Text>
+                    <Text
+                        style={(booking.bookingStatus === 'Canceled') ? { ...styles.bookingStatus, ...styles.bookingCanceled } : (booking.bookingStatus === 'Completed') ? { ...styles.bookingStatus, ...styles.bookingCompleted } : { ...styles.bookingStatus }}>{booking.bookingStatus}</Text>
+                </View>
                 <Text style={{ fontFamily: 'outfit-bold', fontSize: 19 }}>{booking.businessList.name}</Text>
-                <View style={{ display: 'flex', flexDirection: 'row', gap: 3, flex: 1 }}>
-                    <Ionicons name="location-sharp" size={20} color={Colors.PRIMARY} />
+                <View style={{ display: 'flex', flexDirection: 'row', gap: 5, flex: 1 }}>
+                    <Ionicons name="calendar" size={20} color={Colors.PRIMARY} />
                     <Text style={{ fontFamily: 'outfit', color: Colors.GRAY, fontSize: 16, flex: 1 }}>
-                        {booking.businessList.adress}
+                        {booking.date + ' at ' + booking.time}
                     </Text>
                 </View>
             </View>
-        </TouchableOpacity>
+
+        </TouchableOpacity >
     )
 }
 
@@ -48,4 +53,19 @@ const styles = StyleSheet.create({
         height: 100,
         borderRadius: 15,
     },
+    bookingStatus: {
+        color: Colors.PRIMARY,
+        backgroundColor: Colors.PRIMARY_LIGHT,
+        padding: 5,
+        borderRadius: 5,
+        fontSize: 14
+    },
+    bookingCanceled: {
+        color: Colors.RED,
+        backgroundColor: Colors.RED_LIGHT,
+    },
+    bookingCompleted: {
+        color: Colors.GREEN,
+        backgroundColor: Colors.GREEN_LIGHT,
+    }
 })

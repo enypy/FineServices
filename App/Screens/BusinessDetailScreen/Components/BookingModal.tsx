@@ -2,9 +2,9 @@ import { View, Text, Modal, TouchableOpacity, StyleSheet, FlatList, TextInput, N
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { Ionicons } from '@expo/vector-icons'
 import CalendarPicker from 'react-native-calendar-picker'
-import Colors from '../../Utils/Colors'
-import Heading from '../../Components/Heading'
-import { createBooking } from '../../Utils/GlobalApi'
+import Colors from '../../../Utils/Colors'
+import Heading from '../../../Components/Heading'
+import { createBooking } from '../../../Utils/GlobalApi'
 import { useUser } from '@clerk/clerk-expo'
 import { format } from 'date-fns'
 
