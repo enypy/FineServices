@@ -1,6 +1,6 @@
 {
   "expo": {
-    "scheme": "fineServices",
+    "scheme": "fineservices",
     "name": "fineServices",
     "slug": "fineServices",
     "version": "1.0.0",
@@ -22,13 +22,19 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.ebusy.fineServices"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
       "expo-font"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "5aa7bd99-aa61-43ca-b156-2b6e0bb83926"
+      }
+    }
   }
 }
