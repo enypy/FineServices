@@ -10,8 +10,9 @@ export default function BusinessPictures({ business }: { business: BusinessList[
             <Heading heading={'Image Gallery'} />
                 <FlatList
                     data={business?.images}
-                    numColumns={2}
-                    scrollEnabled={false}
+                    showsHorizontalScrollIndicator={false}
+                    scrollEnabled={true}
+                    horizontal={true}
                     renderItem={({ item }) => (
                         <Image style={styles.image} source={{ uri: item.url }} />
                     )}
@@ -22,11 +23,12 @@ export default function BusinessPictures({ business }: { business: BusinessList[
 
 const styles = StyleSheet.create({
     image: {
-        width: '100%',
-        height: 120,
-        objectFit: 'fill',
-        flex: 1,
+        width: 150,
+        height: 150,
+        objectFit: 'cover',
         borderRadius: 15,
-        margin: 7
+        margin: 7,
+        borderWidth: 0.2,
+        borderColor: Colors.BLACK
     }
 })

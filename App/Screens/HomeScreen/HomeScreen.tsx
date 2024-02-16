@@ -4,10 +4,11 @@ import Header from './Components/Header'
 import Slider from './Components/Slider'
 import Categories from './Components/Categories'
 import BusinessList from './Components/BusinessList'
+import { ScrollView } from 'react-native-gesture-handler'
 
 export default function HomeScreen() {
     return (
-        <View>
+        <ScrollView horizontal={false}>
             <Header />
             <View style={{ padding: 20 }}>
                 <Slider />
@@ -18,6 +19,6 @@ export default function HomeScreen() {
             <View style={{ padding: 20 }}>
                 <BusinessList />
             </View>
-        </View>
+        </ScrollView>
     )
 }

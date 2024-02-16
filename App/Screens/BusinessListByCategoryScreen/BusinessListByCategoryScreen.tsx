@@ -1,19 +1,19 @@
-import { View, Text, TouchableOpacity, FlatList } from 'react-native'
+import { View, Text, FlatList } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useNavigation, useRoute } from '@react-navigation/native'
-import { getBusinessListsByCategory } from '../../../Utils/GlobalApi'
-import BusinessListItem from '../BusinessListItem'
-import Colors from '../../../Utils/Colors'
-import PageHeading from '../../../Components/PageHeading'
+import { getBusinessListsByCategory } from '../../Utils/GlobalApi'
+import BusinessListItem from './Components/BusinessListItem'
+import Colors from '../../Utils/Colors'
+import PageHeading from '../../Components/PageHeading'
 
 export default function BusinessListByCategoryScreen() {
 
   const navigation = useNavigation()
-  const param: any = useRoute().params
+  const param: { category : Category} = useRoute().params as { category: Category }
   const [businessListsByCategory, setBusinessListsByCategory] = useState<undefined | BusinessList["businessLists"]>(undefined)
 
   useEffect(() => {
-    if (param?.category) {
+    if (param && typeof param === 'object' && 'category' in param) {
       getBusinessListsByCategory(param.category)
         .then(res => {
           if (res && typeof res === 'object' && 'businessLists' in res) {
@@ -35,6 +35,9 @@ export default function BusinessListByCategoryScreen() {
       {(businessListsByCategory && businessListsByCategory?.length > 0) ? <FlatList
         data={businessListsByCategory}
         style={{ marginTop: 10 }}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+        scrollEnabled={true}
         renderItem={({ item, index }) => (
           <BusinessListItem business={item} />
         )}

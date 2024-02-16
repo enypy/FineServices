@@ -1,4 +1,4 @@
-import { View, Text, Modal, TouchableOpacity, StyleSheet, FlatList, TextInput, NativeSyntheticEvent, TextInputChangeEventData, KeyboardAvoidingView, ScrollView, ToastAndroid } from 'react-native'
+import { View, Text, Modal, TouchableOpacity, StyleSheet, FlatList, TextInput, KeyboardAvoidingView, ScrollView, ToastAndroid } from 'react-native'
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { Ionicons } from '@expo/vector-icons'
 import CalendarPicker from 'react-native-calendar-picker'
@@ -115,7 +115,7 @@ export default function BookingModal({ isModalVisible, setIsModalVisible, busine
               data={scheduleList}
               horizontal={true}
               showsHorizontalScrollIndicator={false}
-              renderItem={({ item, index }) => (
+              renderItem={({ item }) => (
                 <TouchableOpacity
                   style={{ marginRight: 10 }}
                   onPress={() => { setSelectedSchedule(item) }}
@@ -190,6 +190,7 @@ const styles = StyleSheet.create({
     padding: 13,
     elevation: 2,
     marginLeft: 20,
-    marginRight: 20
+    marginRight: 20,
+    marginBottom: 20
   }
 })

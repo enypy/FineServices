@@ -1,6 +1,5 @@
-import { View, Text, FlatList } from 'react-native'
+import { View, FlatList } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import PageHeading from '../../Components/PageHeading'
 import { getUserBookings } from '../../Utils/GlobalApi'
 import { useUser } from '@clerk/clerk-expo'
 import Heading from '../../Components/ScreenHeading'
@@ -36,14 +35,15 @@ export default function BookingScreen() {
     }
 
     return (
-        <View style={{ padding: 20 }}>
+        <View style={{ padding: 20, flex: 1, paddingBottom: 0 }}>
             <Heading heading='My Bookings' color={Colors.BLACK} />
-            <View>
+            <View style={{ flex: 1 }}>
                 <FlatList data={userBookings}
                 onRefresh={() => { fetchUserBookings() }}
                 refreshing={loading}
-                scrollEnabled={true}
+                showsHorizontalScrollIndicator={false}
                 showsVerticalScrollIndicator={false}
+                scrollEnabled={true}
                     renderItem={({ item }) => (
                         <BookingItem booking={item} />
                     )} />

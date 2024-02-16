@@ -57,7 +57,7 @@ const getBusinessLists = async (): Promise<BusinessList> => {
   return request(MASTER_URL, query)
 }
 
-const getBusinessListsByCategory = async (category: Category): Promise<BusinessList> => {
+const getBusinessListsByCategory = async (category: Category | unknown): Promise<BusinessList> => {
   if (!MASTER_URL) throw new Error('MASTER_URL NOT FOUND')
   const query = gql`
     query GetBusinessListByCategory {

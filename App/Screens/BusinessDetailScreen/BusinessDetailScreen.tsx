@@ -22,8 +22,8 @@ export default function BusinessDetailScreen(): React.JSX.Element {
     }
 
     return (
-        <View>
-            <ScrollView style={{ height: '91%' }}>
+        <View style={{ display: 'flex', flex: 1, flexDirection: "column"}}>
+            <ScrollView style={{ flex: 1}}>
                 <TouchableOpacity
                     style={styles.backBtnContainer}
                     onPress={() => navigation.goBack()}

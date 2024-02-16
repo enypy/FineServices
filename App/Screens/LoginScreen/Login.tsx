@@ -18,15 +18,15 @@ export default function Login() {
 
       if (createdSessionId) {
         setActive({ session: createdSessionId });
-      } 
-      
+      }
+
     } catch (err) {
       console.error("OAuth error", err);
     }
   }, []);
 
   return (
-    <View>
+    <View style={styles.conainer}>
       <Image style={styles.loginImage} source={require('./../../../assets/images/login.png')} />
       <View style={styles.subContainer}>
         <Text style={{ fontSize: 27, color: Colors.WHITE, textAlign: 'center' }}>
@@ -56,16 +56,22 @@ const styles = StyleSheet.create({
   subContainer: {
     backgroundColor: Colors.PRIMARY,
     width: '100%',
-    height: '70%',
-    marginTop: -20,
+    height: 300,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
-    padding: 20
+    padding: 20,
+    alignSelf: 'flex-end',
+    marginTop: -80
   },
   button: {
     padding: 15,
     backgroundColor: Colors.WHITE,
     borderRadius: 99,
     marginTop: 40
+  },
+  conainer: {
+    display: 'flex',
+    flex: 1,
+    justifyContent: 'flex-end'
   }
 })

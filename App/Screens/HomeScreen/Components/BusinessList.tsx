@@ -26,12 +26,12 @@ export default function BusinessList() {
 
     return (
         <View>
-            <Heading heading={'Latest Business'} isViewAll={true} />
+            <Heading heading={'Latest Offers'} isViewAll={true} />
             <FlatList
                 data={businessList}
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
-                renderItem={({ item, index }) => (
+                renderItem={({ item }) => (
                     <View style={{ marginRight: 10 }}>
                         <BusinessListItemSmall business={item} />
                     </View>
