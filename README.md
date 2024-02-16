@@ -1,4 +1,4 @@
-# FineServices 🛠️
+# FineServices 🛠
 
 FineServices is a React Native application built with Expo. With FineServices, you can conveniently book a variety of services including cleaning, repairing, painting, and shifting.
 
@@ -10,13 +10,13 @@ FineServices is a React Native application built with Expo. With FineServices, y
 - Hygraph
 - Clerc
 
-## Installation 🛠️
+## Installation 💾
 
 1. Clone the repository.
 2. Install dependencies with `npm install`.
 3. Run the app with `expo start`.
 
-## Screenshots
+## Screenshots 🖼
 <div>
 <img src='https://i.imgur.com/3lG0VBL.png' width='300'>
 <img src='https://i.imgur.com/Z5UFKas.png' width='300'>
